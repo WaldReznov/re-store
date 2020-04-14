@@ -41,3 +41,32 @@ Dispatch:
 2. Первый HOC - WithBookstoreService - получает сервис из контекста и передает в компонент;
 3. Второй HOC - connect() - оборачивает функцию dispatch из Redux Store;
 4. mapDispatchToProps может быть функцией или объектом. Если это объект, то он передается в bindActionCreators();
+
+
+Асинхронные данные 
+
+Загрузка данных:
+1. Добавить поле loading в Redux state
+2. Обновлять это поле в reducer, когда данные становятся доступными
+3. Передавать значение loading в компонент, используя mapStateToProps
+
+
+
+React: setState()
+-----------------
+
+{a: 0, b: 0} // init state
+setState({a: 100});
+{a: 100, b: 0}
+
+Redux: reducer()
+----------------
+{a: 0, b: 0} // init state
+const reducer = (state, action) => {
+    return {a: 100, b:state.b};
+}
+либо
+const reducer = (state, action) => {
+    return {...state, a: 100};
+}
+{a: 100, b: 0}
