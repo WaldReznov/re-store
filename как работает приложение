@@ -1,0 +1,43 @@
+Error boundry - это компонент который отлавливает ошибки с помощью componentDidCatch и если отлавливает ошибку, то выводит компонент ErrorIndicator.
+ErrorIndicator - компонент который выводит сообщение об ошибке
+BookstoreServiceProvider - компонент который передает 
+BookstoreServiceConsumer - компонент который принимает 
+
+Structure of project:
+
+Provider - предоставляет доступ к Redux Store
+    Error boundry   - обработка ошибок
+        BookstoreServiceProvider - передает сервис через ContextAPI
+            Router - Router из пакета react-router
+                App - само приложение
+                    
+Structure of App:
+
+Switch - выбор одного из путей
+    Route - Это что-то наподобие компонента, который отображается в зависимости от того, какой path - т.е. URL в браузере ты укажешь.
+
+Весь этот компонент оборачивается в HOC WithBookstoreService
+
+Structure of WithBookstoreService:
+
+BookstoreServiceConsumer
+    <Wrapped {...props} bookstoreService={booksStoreService}/>
+
+Structure of HomePage:
+    <BookList />
+
+
+BookList:
+     
+mapStateToProps - описывает какие данные хочет получить компонент из redux store
+
+mapDispatchToProps - описывает какие действия будет выполнять компонент
+
+Когда создается компонент выполняется хук componentDidMount и в нём мы получает bookstoreService с помощью компонента высшего порядка WithBookstoreService
+
+
+Dispatch: 
+1. Чтобы получить данные из сервиса и передать их в Redux Store мы использовали два HOC;
+2. Первый HOC - WithBookstoreService - получает сервис из контекста и передает в компонент;
+3. Второй HOC - connect() - оборачивает функцию dispatch из Redux Store;
+4. mapDispatchToProps может быть функцией или объектом. Если это объект, то он передается в bindActionCreators();
