@@ -8,7 +8,7 @@ import Spinner from '../spinner';
 import compose from '../../utils';
 import './book-list.css';
 
-class BookList extends Component {
+class BookListContainer extends Component {
 
     componentDidMount() {
         this.props.fetchBooks();
@@ -24,20 +24,25 @@ class BookList extends Component {
         if(error) {
             return <ErrorIndicator />
         }
-        return (
-            <ul className="book-list">
-                {
-                    books.map((book) => {
-                        return (
-                            <li key={book.id}>
-                                <BookListItem book={book} />
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        )
+        
+        return <BookList books={books}/>
     }
+}
+
+const BookList = ({books}) => {
+    return (
+        <ul className="book-list">
+            {
+                books.map((book) => {
+                    return (
+                        <li key={book.id}>
+                            <BookListItem book={book} />
+                        </li>
+                    )
+                })
+            }
+        </ul>
+    )
 }
 
 const mapStateToProps = ({books, loading, error}) => {
@@ -59,4 +64,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default compose (
     WithBookstoreService(),
     connect(mapStateToProps, mapDispatchToProps))
-    (BookList);
+    (BookListContainer);
