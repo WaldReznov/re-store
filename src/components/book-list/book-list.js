@@ -16,6 +16,7 @@ class BookListContainer extends Component {
 
     render() {
         const {books, loading, error, onAddedToCart} = this.props;
+        console.log('PROPS', this.props);
 
         if(loading) {
             return <Spinner />
@@ -45,7 +46,7 @@ const BookList = ({books, onAddedToCart}) => {
     )
 }
 
-const mapStateToProps = ({books, loading, error}) => {
+const mapStateToProps = ({bookList: {books, loading, error}}) => {
     return {
         books,
         loading,
