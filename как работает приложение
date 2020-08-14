@@ -16,7 +16,7 @@ Structure of App:
 Switch - выбор одного из путей
     Route - Это что-то наподобие компонента, который отображается в зависимости от того, какой path - т.е. URL в браузере ты укажешь.
 
-Весь этот компонент оборачивается в HOC WithBookstoreService
+Весь этот компонент оборачивается в HOC WithBookstoreService - используется технология React Provider
 
 Structure of WithBookstoreService:
 
@@ -50,23 +50,3 @@ Dispatch:
 2. Обновлять это поле в reducer, когда данные становятся доступными
 3. Передавать значение loading в компонент, используя mapStateToProps
 
-
-
-React: setState()
------------------
-
-{a: 0, b: 0} // init state
-setState({a: 100});
-{a: 100, b: 0}
-
-Redux: reducer()
-----------------
-{a: 0, b: 0} // init state
-const reducer = (state, action) => {
-    return {a: 100, b:state.b};
-}
-либо
-const reducer = (state, action) => {
-    return {...state, a: 100};
-}
-{a: 100, b: 0}
